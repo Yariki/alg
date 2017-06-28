@@ -9,13 +9,13 @@ using namespace std;
 
 void HeapSort::Sort(int *arr, int length)
 {
-    int heapSize = length;
-    buildMaxHeap(arr,length);
-    for (int i = (length - 1); i > 0 ; i--)
+    int heapSize = length - 1;
+    buildMaxHeap(arr,length, heapSize);
+    for (int i = heapSize; i > 0 ; i--)
     {
         swap(arr[0],arr[i]);
         heapSize--;
-        maxHeapify(arr,0,i);
+        maxHeapify(arr,0,heapSize);
     }
 }
 
@@ -26,12 +26,12 @@ int HeapSort::getParent(int currentIndex)
 
 int HeapSort::getLeft(int currentIndex)
 {
-    return 2 * currentIndex + 1;
+    return 2 * currentIndex ;
 }
 
 int HeapSort::getRight(int currentIndex)
 {
-    return 2* currentIndex + 2;
+    return 2* currentIndex + 1;
 }
 
 void HeapSort::maxHeapify(int *arr, int currentIndex, int heapSize)
@@ -40,12 +40,10 @@ void HeapSort::maxHeapify(int *arr, int currentIndex, int heapSize)
     int leftIndex = getLeft(currentIndex);
     int rightIndex = getRight(currentIndex);
 
-    if(leftIndex <= heapSize && arr[leftIndex] > arr[currentIndex])
+    if(leftIndex <= heapSize && arr[leftIndex] > arr[largest])
     {
         largest = leftIndex;
     }
-//    else
-//        largest = currentIndex;
     if(rightIndex <= heapSize && arr[rightIndex] > arr[largest])
     {
         largest = rightIndex;
@@ -56,10 +54,9 @@ void HeapSort::maxHeapify(int *arr, int currentIndex, int heapSize)
     }
 }
 
-void HeapSort::buildMaxHeap(int *arr, int lenght)
+void HeapSort::buildMaxHeap(int *arr, int lenght, int heapSize)
 {
-    int heapSize = lenght;
-    int middle = lenght / 2 - 1;
+    int middle = heapSize / 2 ;
     for (int i = middle; i >= 0; i--)
     {
         maxHeapify(arr,i,heapSize);
