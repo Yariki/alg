@@ -17,7 +17,7 @@ private:
     int getLeft(int currentIndex);
     int getRight(int currentIndex);
     void maxHeapify(int* arr, int currentIndex, int heapSize);
-    void buildMaxHeap(int * arr, int lenght);
+    void buildMaxHeap(int * arr, int lenght, int heapSize);
 
 };
 

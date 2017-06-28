@@ -3,5 +3,5 @@ project(algorithms)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp BaseSort.cpp BaseSort.h InsertionSort.cpp InsertionSort.h MergeSort.cpp MergeSort.h HeapSort.cpp HeapSort.h QuickSort.cpp QuickSort.h)
+set(SOURCE_FILES main.cpp Sorting/BaseSort.cpp Sorting/BaseSort.h Sorting/InsertionSort.cpp Sorting/InsertionSort.h Sorting/MergeSort.cpp Sorting/MergeSort.h Sorting/HeapSort.cpp Sorting/HeapSort.h Sorting/QuickSort.cpp Sorting/QuickSort.h)
 add_executable(algorithms ${SOURCE_FILES})
