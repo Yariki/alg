@@ -1,8 +1,8 @@
 #include <iostream>
-#include "InsertionSort.h"
-#include "MergeSort.h"
-#include "HeapSort.h"
-#include "QuickSort.h"
+#include "Sorting/InsertionSort.h"
+#include "Sorting/MergeSort.h"
+#include "Sorting/HeapSort.h"
+#include "Sorting/QuickSort.h"
 
 using namespace std;
 
@@ -14,7 +14,7 @@ int main() {
     for (int i = 0; i < length; ++i) {
         printf("%d ",arr[i]);
     }
-    auto sort = new QuickSort();
+    auto sort = new HeapSort();
     sort->Sort(arr, length);
     printf("\nAfter Sort\n");
     for (int i = 0; i < length; ++i) {
