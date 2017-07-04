@@ -67,6 +67,35 @@ const BSTNode *BSTree::search(const BSTNode *localRoot, int value) {
     }
 }
 
-void BSTree::deleteNode(int value) {
+void BSTree::transplant(BSTNode *u, BSTNode *v) {
+    if(u->getParent() == nullptr){
+        root = v;
+    } else if(u == u->getParent()->getLeft()){
+        u->getParent()->setLeft(v);
+    }else{
+        u->getParent()->setRight(v);
+    }
+    if(v != nullptr){
+        v->setParent(u->getParent());
+    }
+}
 
+void BSTree::deleteNode(int value) {
+    auto deletedNode = (BSTNode*)search(root,value);
+
+    if(deletedNode->getLeft() == nullptr){
+        transplant(deletedNode,deletedNode->getRight());
+    }else if(deletedNode->getRight() == nullptr){
+        transplant(deletedNode,deletedNode->getLeft());
+    }else{
+        auto y = (BSTNode*)minimum(deletedNode->getRight());
+        if(y->getParent() != deletedNode){
+            transplant(y,y->getRight());
+            y->setRight(deletedNode->getRight());
+            y->getRight()->setParent(y);
+        }
+        transplant(deletedNode,y);
+        y->setLeft(deletedNode->getLeft());
+        y->getLeft()->setParent(y);
+    }
 }

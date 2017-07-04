@@ -23,9 +23,12 @@ public:
     const BSTNode* minimum(const BSTNode* localRoot);
     const BSTNode* maximum(const BSTNode* localRoot);
 
+private:
+    void transplant(BSTNode* u, BSTNode* v);
 
 private:
     BSTNode* root;
+
 
 };
 

@@ -6,6 +6,9 @@
 
 BSTNode::BSTNode(int value) {
     this->value = value;
+    this->parent = nullptr;
+    this->left = nullptr;
+    this->right = nullptr;
 }
 
 BSTNode::BSTNode(int value, BSTNode *parent, BSTNode *left, BSTNode *right){
