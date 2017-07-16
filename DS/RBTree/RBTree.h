@@ -26,6 +26,7 @@ public:
     void deleteNode(RBNode* z);
     const RBNode* minimum(const RBNode* localRoot);
     const RBNode* maximum(const RBNode* localRoot);
+    const RBNode* search(const RBNode* localRoot, int value);
 
 private:
     RBNode *createNewNode(int value);

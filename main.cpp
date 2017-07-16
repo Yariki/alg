@@ -4,6 +4,7 @@
 #include "Sorting/HeapSort.h"
 #include "Sorting/QuickSort.h"
 #include "DS/BSTree/BSTree.h"
+#include "DS/RBTree/RBTree.h"
 
 using namespace std;
 
@@ -24,11 +25,11 @@ int main() {
 //    delete sort;
 
     // binary search tree
-    BSTree* tree = new BSTree();
+    RBTree* tree = new RBTree();
     int arr[11] = {15,6,3,7,2,4,13,9,18,17,20};
     int length = sizeof(arr)/sizeof(arr[0]);
     for (int i = 0; i < length; i++) {
-        tree->insertNode(arr[i]);
+        tree->insert(arr[i]);
     }
     auto min = tree->minimum(tree->getRoot());
     auto max = tree->maximum(tree->getRoot());
@@ -41,7 +42,8 @@ int main() {
         printf("The value %d wasn't found.\n", 9);
     }
 
-    tree->deleteNode(6);
+    auto node = tree->search(tree->getRoot(),6);
+    tree->deleteNode((RBNode*)node);
 
     result = tree->search(tree->getRoot(),6);
     if(result){

@@ -5,11 +5,12 @@
 #include "RBTree.h"
 
 RBTree::RBTree() {
-    root = nullptr;
-    nil = new RBNode();
+    nil = new RBNode(0);
     nil->setLeft(nullptr);
     nil->setRight(nullptr);
+    nil->setParent(nullptr);
     nil->setColor(RBNODE_COLOR::Black);
+    root = nil;
 }
 
 
@@ -65,7 +66,7 @@ void RBTree::insert(int value) {
     }
     z->setParent(y);
     if(y == RBTree::nil){
-        RBTree::root = y;
+        RBTree::root = z;
     }else if(z->getValue() < y->getValue()){
         y->setLeft(z);
     }else{
@@ -80,7 +81,7 @@ RBNode *RBTree::createNewNode(int value) {
     result->setRight(RBTree::nil);
     result->setLeft(RBTree::nil);
     result->setColor(RBNODE_COLOR::Red);
-    return nullptr;
+    return result;
 }
 
 void RBTree::insertFixup(RBNode *z) {
@@ -92,13 +93,15 @@ void RBTree::insertFixup(RBNode *z) {
                 y->setColor(RBNODE_COLOR::Black);
                 z->getParent()->getParent()->setColor(RBNODE_COLOR::Red);
                 z = z->getParent()->getParent();
-            }else if(z == z->getParent()->getRight()){
-                z = z->getParent();
-                leftRotate(z);
+            }else{
+                if(z == z->getParent()->getRight()) {
+                    z = z->getParent();
+                    leftRotate(z);
+                }
+                z->getParent()->setColor(RBNODE_COLOR::Black);
+                z->getParent()->getParent()->setColor(RBNODE_COLOR::Red);
+                righRotate(z->getParent()->getParent());
             }
-            z->getParent()->setColor(RBNODE_COLOR::Black);
-            z->getParent()->getParent()->setColor(RBNODE_COLOR::Red);
-            righRotate(z);
         }else{
             auto y = z->getParent()->getParent()->getLeft();
             if(y->getColor() == RBNODE_COLOR::Red){
@@ -106,13 +109,15 @@ void RBTree::insertFixup(RBNode *z) {
                 y->setColor(RBNODE_COLOR::Black);
                 z->getParent()->getParent()->setColor(RBNODE_COLOR::Red);
                 z = z->getParent()->getParent();
-            }else if(z == z->getParent()->getLeft()){
-                z = z->getParent();
-                righRotate(z);
+            }else{
+                if(z == z->getParent()->getLeft()){
+                    z = z->getParent();
+                    righRotate(z);
+                }
+                z->getParent()->setColor(RBNODE_COLOR::Black);
+                z->getParent()->getParent()->setColor(RBNODE_COLOR::Red);
+                leftRotate(z->getParent()->getParent());
             }
-            z->getParent()->setColor(RBNODE_COLOR::Black);
-            z->getParent()->getParent()->setColor(RBNODE_COLOR::Red);
-            leftRotate(z);
         }
     }
     root->setColor(RBNODE_COLOR::Black);
@@ -230,3 +235,14 @@ const RBNode *RBTree::maximum(const RBNode *localRoot) {
     return local;
 }
 
+const RBNode *RBTree::search(const RBNode* localRoot,int value) {
+    auto local = localRoot;
+    if(local == nullptr || value  == local->getValue()){
+        return local;
+    }
+    if(value < local->getValue()){
+        search(local->getLeft(),value);
+    }else{
+        search(local->getRight(),value);
+    }
+}

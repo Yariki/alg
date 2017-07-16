@@ -22,11 +22,11 @@ public:
     }
 
     int getValue() const {
-        return value;
+        return this->value;
     }
 
     void setValue(int value) {
-        RBNode::value = value;
+        this->value = value;
     }
 
     RBNODE_COLOR getColor() const {
@@ -34,7 +34,7 @@ public:
     }
 
     void setColor(RBNODE_COLOR color) {
-        RBNode::color = color;
+        this->color = color;
     }
 
     RBNode *getParent() const {
@@ -42,7 +42,7 @@ public:
     }
 
     void setParent(RBNode *parent) {
-        RBNode::parent = parent;
+        this->parent = parent;
     }
 
     RBNode *getLeft() const {
@@ -50,7 +50,7 @@ public:
     }
 
     void setLeft(RBNode *left) {
-        RBNode::left = left;
+        this->left = left;
     }
 
     RBNode *getRight() const {
@@ -58,7 +58,7 @@ public:
     }
 
     void setRight(RBNode *right) {
-        RBNode::right = right;
+        this->right = right;
     }
 
 
