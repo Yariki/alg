@@ -2,6 +2,7 @@
 // Created by Yariki on 7/6/2017.
 //
 
+#include <cstdio>
 #include "RBTree.h"
 
 RBTree::RBTree() {
@@ -124,35 +125,80 @@ void RBTree::insertFixup(RBNode *z) {
 }
 
 void RBTree::deleteNode(RBNode *z) {
-    auto y = z;
-    auto yOriginalColor = y->getColor();
+
+    // from third edition
+//    auto y = z;
+//    auto yOriginalColor = y->getColor();
+//    RBNode* x = nullptr;
+//    if(z->getLeft() == RBTree::nil){
+//        x = z->getRight();
+//        rbTransplant(z,z->getRight());
+//    }else if(z->getRight() == RBTree::nil){
+//        x = z->getLeft();
+//        rbTransplant(z,z->getLeft());
+//    }else{
+//        y = (RBNode*)minimum(z->getRight());
+//        yOriginalColor = y->getColor();
+//        x = y->getRight();
+//        if(y->getParent() == z){
+//            x->setParent(y);
+//        }else{
+//            rbTransplant(y,y->getRight());
+//            y->setRight(z->getRight());
+//            y->getRight()->setParent(y);
+//        }
+//        rbTransplant(z,y);
+//        y->setLeft(z->getLeft());
+//        y->getLeft()->setParent(y);
+//        y->setColor(z->getColor());
+//    }
+//    if(yOriginalColor == RBNODE_COLOR::Black){
+//        rbDeleteFixup(x);
+//    }
+//    delete z;
+
+
+    // from second edition
     RBNode* x = nullptr;
-    if(z->getLeft() == RBTree::nil){
-        x = z->getRight();
-        rbTransplant(z,z->getRight());
-    }else if(x->getRight() == RBTree::nil){
-        x = z->getLeft();
-        rbTransplant(z,z->getLeft());
-    }else{
-        y = (RBNode*)minimum(z->getRight());
-        yOriginalColor = y->getColor();
-        x = y->getRight();
-        if(y->getParent() == z){
-            x->setParent(y);
-        }else{
-            rbTransplant(y,y->getRight());
-            y->setRight(z->getRight());
-            y->getRight()->setParent(y);
-        }
-        rbTransplant(z,y);
-        y->setLeft(z->getLeft());
-        y->getLeft()->setParent(y);
-        y->setColor(z->getColor());
+    RBNode* y = nullptr;
+    if(z->getLeft() == nil || z->getRight() == nil){
+        y = z;
+    } else{
+        y = treeSuccessor(z);
     }
-    if(yOriginalColor == RBNODE_COLOR::Black){
+
+    x = y->getLeft() != nil ? y->getLeft() : y->getRight();
+
+    x->setParent(y->getParent());
+    if(y->getParent() == nil){
+        root = x;
+    } else{
+        if(y == y->getParent()->getLeft()){
+            y->getParent()->setLeft(x);
+        }else{
+            y->getParent()->setRight(x);
+        }
+    }
+    if(y != z){
+        z->setValue(y->getValue());
+    }
+    if(y->getColor() == RBNODE_COLOR::Black){
         rbDeleteFixup(x);
     }
 }
+
+RBNode *RBTree::treeSuccessor(RBNode *z) {
+    if(z->getRight() != nil){
+        return (RBNode *) minimum(z->getRight());
+    }
+    auto y = z->getParent();
+    while(y != nil && z == y->getRight()){
+        z = y;
+        y = y->getParent();
+    }
+    return y;
+}
+
 
 void RBTree::rbTransplant(RBNode *u, RBNode *v) {
      if(u->getParent() == nil){
@@ -180,17 +226,19 @@ void RBTree::rbDeleteFixup(RBNode *x) {
             if(w->getLeft()->getColor() == RBNODE_COLOR::Black && w->getRight()->getColor() == RBNODE_COLOR::Black){
                 w->setColor(RBNODE_COLOR::Black);
                 x = x->getParent();
-            }else if(w->getRight()->getColor() == RBNODE_COLOR::Black){
-                w->getLeft()->setColor(RBNODE_COLOR::Black);
-                w->setColor(RBNODE_COLOR::Red);
-                righRotate(w);
-                w = x->getParent()->getRight();
+            }else{
+                if(w->getRight()->getColor() == RBNODE_COLOR::Black){
+                    w->getLeft()->setColor(RBNODE_COLOR::Black);
+                    w->setColor(RBNODE_COLOR::Red);
+                    righRotate(w);
+                    w = x->getParent()->getRight();
+                }
+                w->setColor(x->getParent()->getColor());
+                x->getParent()->setColor(RBNODE_COLOR::Black);
+                w->getRight()->setColor(RBNODE_COLOR::Black);
+                leftRotate(x->getParent());
+                x = RBTree::root;
             }
-            w->setColor(x->getParent()->getColor());
-            x->getParent()->setColor(RBNODE_COLOR::Black);
-            w->getRight()->setColor(RBNODE_COLOR::Black);
-            leftRotate(x->getParent());
-            x = RBTree::root;
         }else{
             // if right child
             w = x->getParent()->getLeft();
@@ -203,17 +251,19 @@ void RBTree::rbDeleteFixup(RBNode *x) {
             if(w->getLeft()->getColor() == RBNODE_COLOR::Black && w->getRight()->getColor() == RBNODE_COLOR::Black){
                 w->setColor(RBNODE_COLOR::Black);
                 x = x->getParent();
-            }else if(w->getLeft()->getColor() == RBNODE_COLOR::Black){
-                w->getRight()->setColor(RBNODE_COLOR::Black);
-                w->setColor(RBNODE_COLOR::Red);
-                leftRotate(w);
-                w = x->getParent()->getLeft();
+            }else{
+                if(w->getLeft()->getColor() == RBNODE_COLOR::Black){
+                    w->getRight()->setColor(RBNODE_COLOR::Black);
+                    w->setColor(RBNODE_COLOR::Red);
+                    leftRotate(w);
+                    w = x->getParent()->getLeft();
+                }
+                w->setColor(x->getParent()->getColor());
+                x->getParent()->setColor(RBNODE_COLOR::Black);
+                w->getLeft()->setColor(RBNODE_COLOR::Black);
+                righRotate(x->getParent());
+                x = RBTree::root;
             }
-            w->setColor(x->getParent()->getColor());
-            x->getParent()->setColor(RBNODE_COLOR::Black);
-            w->getLeft()->setColor(RBNODE_COLOR::Black);
-            righRotate(x->getParent());
-            x = RBTree::root;
         }
         x->setColor(RBNODE_COLOR::Black);
     }
@@ -221,7 +271,7 @@ void RBTree::rbDeleteFixup(RBNode *x) {
 
 const RBNode *RBTree::minimum(const RBNode *localRoot) {
     auto local = localRoot;
-    while(local->getLeft() != nullptr){
+    while(local->getLeft() != nil){
         local = local->getLeft();
     }
     return local;
@@ -229,7 +279,7 @@ const RBNode *RBTree::minimum(const RBNode *localRoot) {
 
 const RBNode *RBTree::maximum(const RBNode *localRoot) {
     auto local = localRoot;
-    while(local->getRight() != nullptr){
+    while(local->getRight() != nil){
         local = local->getRight();
     }
     return local;
@@ -237,12 +287,50 @@ const RBNode *RBTree::maximum(const RBNode *localRoot) {
 
 const RBNode *RBTree::search(const RBNode* localRoot,int value) {
     auto local = localRoot;
-    if(local == nullptr || value  == local->getValue()){
+    if(local == nil || value  == local->getValue()){
         return local;
     }
     if(value < local->getValue()){
         search(local->getLeft(),value);
     }else{
         search(local->getRight(),value);
+    }
+}
+
+void RBTree::display() {
+    if(root != nil){
+        internalDisplay(root);
+    }else{
+        printf("Tree is empty!\n");
+    }
+
+}
+
+void RBTree::internalDisplay(RBNode *node) {
+    if(node->getLeft() != nil){
+        internalDisplay(node->getLeft());
+    }
+    if(node != nil){
+        printf("%s ",node->getValue());
+        printf("%s ", node->getColor() == RBNODE_COLOR::Black ? "Black" : "Red");
+        if(node->getParent() != nil){
+            printf("%s ", node->getParent()->getValue());
+        }else{
+            printf("NULL ");
+        }
+        if(node->getLeft() != nil){
+            printf("%s ", node->getLeft()->getValue());
+        }else{
+            printf("NULL ");
+        }
+        if(node->getRight() != nil){
+            printf("%s ", node->getRight()->getValue());
+        }else{
+            printf("NULL ");
+        }
+        printf("\n");
+    }
+    if(node->getRight() != nil){
+        internalDisplay(node->getRight());
     }
 }

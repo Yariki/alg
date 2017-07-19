@@ -6,7 +6,9 @@
 #define ALGORITHMS_RBTREE_H
 
 
+
 #include "RBNode.h"
+
 
 class RBTree {
 
@@ -27,7 +29,7 @@ public:
     const RBNode* minimum(const RBNode* localRoot);
     const RBNode* maximum(const RBNode* localRoot);
     const RBNode* search(const RBNode* localRoot, int value);
-
+    void display();
 private:
     RBNode *createNewNode(int value);
     void leftRotate(RBNode* x);
@@ -35,6 +37,9 @@ private:
     void insertFixup(RBNode* z);
     void rbTransplant(RBNode* u, RBNode* v);
     void rbDeleteFixup(RBNode* x);
+    void internalDisplay(RBNode* node);
+    RBNode* treeSuccessor(RBNode* z);
+
 
 
 

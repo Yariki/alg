@@ -31,6 +31,7 @@ int main() {
     for (int i = 0; i < length; i++) {
         tree->insert(arr[i]);
     }
+    //tree->display();
     auto min = tree->minimum(tree->getRoot());
     auto max = tree->maximum(tree->getRoot());
     printf("Min: %d\n",min->getValue());
