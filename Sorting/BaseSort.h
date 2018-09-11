@@ -6,6 +6,8 @@
 #define ALGORITHMS_BASESORT_H
 
 
+#include <array>
+
 class BaseSort {
 
 public:
