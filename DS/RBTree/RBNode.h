@@ -17,6 +17,7 @@ public:
     RBNode(int value){
         this->value = value;
         this->n = 1;
+        left = right = nullptr;
     }
     virtual ~RBNode(){
         left = right = parent = nullptr;

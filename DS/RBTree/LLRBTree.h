@@ -25,15 +25,23 @@ public:
     //void deleteNode(RBNode* z);
     const RBNode* minimum(const RBNode* localRoot);
     const RBNode* maximum(const RBNode* localRoot);
-    const RBNode* search(const RBNode* localRoot, int value);
+    const RBNode* search(RBNode* localRoot, int value);
+    void deleteMax();
+    void deleteMin();
+    void deleteNode(int value);
 private:
     RBNode *createNewNode(int value);
     RBNode* insertInternal(RBNode* h, int value);
     RBNode*  leftRotate(RBNode* x);
     RBNode* righRotate(RBNode* y);
+    RBNode* fixUp(RBNode* h);
+    RBNode* moveRedRight(RBNode* h);
+    RBNode* moveRedLeft(RBNode* h);
     void flipColors(RBNode* h);
     bool isRed(const RBNode* node);
     int size(const RBNode* node);
+    RBNode* deleteMax(RBNode* h);
+    RBNode* deleteMin(RBNode* h);
 
 private:
     RBNode* root;

@@ -52,14 +52,28 @@ bool LLRBTree::isRed(const RBNode *node) {
 }
 
 const RBNode *LLRBTree::minimum(const RBNode *localRoot) {
-    return nullptr;
+    auto local = localRoot == nullptr ? root : localRoot;
+    while(local != nullptr){
+        local = local->getLeft();
+    }
+    return local;
 }
 
 const RBNode *LLRBTree::maximum(const RBNode *localRoot) {
     return nullptr;
 }
 
-const RBNode *LLRBTree::search(const RBNode *localRoot, int value) {
+const RBNode *LLRBTree::search(RBNode* localRoot,int value) {
+    auto local = localRoot == nullptr ? root : localRoot;
+    while(local != nullptr){
+        if(local->getValue() == value){
+            return local;
+        } else if(value > local->getValue()){
+            local = local->getRight();
+        } else if(value < local->getValue()){
+            local = local->getLeft();
+        }
+    }
     return nullptr;
 }
 
@@ -103,4 +117,84 @@ int LLRBTree::size(const RBNode *node) {
         return 0;
     }
     return node->getN();
+}
+
+RBNode *LLRBTree::fixUp(RBNode *h) {
+    auto x = h;
+    if(isRed(x->getRight())){
+        x = leftRotate(x);
+    }
+    if(isRed(x->getLeft()) && isRed(x->getLeft()->getLeft())){
+        x = righRotate(x);
+    }
+    if(isRed(x->getLeft()) && isRed(x->getRight())){
+        flipColors(x);
+    }
+
+    return x;
+}
+
+RBNode *LLRBTree::moveRedRight(RBNode *h) {
+    auto x = h;
+    flipColors(x);
+    if(isRed(x->getLeft()->getLeft())){
+        x = righRotate(x);
+        flipColors(x);
+    }
+    return x;
+}
+
+RBNode *LLRBTree::moveRedLeft(RBNode *h) {
+    auto x = h;
+    flipColors(x);
+    if(isRed(x->getRight()->getLeft())){
+        x->setRight(righRotate(x->getRight()));
+        x = leftRotate(x);
+        flipColors(x);
+    }
+    return x;
+}
+
+void LLRBTree::deleteMax() {
+    root = deleteMax(root);
+    root->setColor(Black);
+}
+
+RBNode *LLRBTree::deleteMax(RBNode *h) {
+    auto x = h;
+    if(isRed(x->getLeft()))
+        x = righRotate(x);
+
+    if(x->getRight() == nullptr){
+        return nullptr;
+    }
+
+    if(!isRed(x->getRight()) && !isRed(x->getRight()->getLeft()))
+        x = moveRedRight(x);
+
+    x->setLeft(deleteMax(x->getLeft()));
+
+    return fixUp(x);
+}
+
+void LLRBTree::deleteMin() {
+    root = deleteMin(root);
+    root->setColor(Black);
+}
+
+RBNode *LLRBTree::deleteMin(RBNode *h) {
+    auto x = h;
+    if(x->getLeft() == nullptr){
+        return nullptr;
+    }
+    if(!isRed(x->getLeft()) && !isRed(x->getLeft()->getLeft())){
+        x = moveRedLeft(x);
+    }
+    x->setLeft(deleteMin(x->getLeft()));
+
+    return fixUp(x);
+}
+
+void LLRBTree::deleteNode(int value) {
+
 }
