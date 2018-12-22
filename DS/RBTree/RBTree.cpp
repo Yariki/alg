@@ -127,64 +127,64 @@ void RBTree::insertFixup(RBNode *z) {
 void RBTree::deleteNode(RBNode *z) {
 
     // from third edition
-//    auto y = z;
-//    auto yOriginalColor = y->getColor();
-//    RBNode* x = nullptr;
-//    if(z->getLeft() == RBTree::nil){
-//        x = z->getRight();
-//        rbTransplant(z,z->getRight());
-//    }else if(z->getRight() == RBTree::nil){
-//        x = z->getLeft();
-//        rbTransplant(z,z->getLeft());
-//    }else{
-//        y = (RBNode*)minimum(z->getRight());
-//        yOriginalColor = y->getColor();
-//        x = y->getRight();
-//        if(y->getParent() == z){
-//            x->setParent(y);
-//        }else{
-//            rbTransplant(y,y->getRight());
-//            y->setRight(z->getRight());
-//            y->getRight()->setParent(y);
-//        }
-//        rbTransplant(z,y);
-//        y->setLeft(z->getLeft());
-//        y->getLeft()->setParent(y);
-//        y->setColor(z->getColor());
-//    }
-//    if(yOriginalColor == RBNODE_COLOR::Black){
-//        rbDeleteFixup(x);
-//    }
-//    delete z;
+    auto y = z;
+    auto yOriginalColor = y->getColor();
+    RBNode* x = nullptr;
+    if(z->getLeft() == RBTree::nil){
+        x = z->getRight();
+        rbTransplant(z,z->getRight());
+    }else if(z->getRight() == RBTree::nil){
+        x = z->getLeft();
+        rbTransplant(z,z->getLeft());
+    }else{
+        y = (RBNode*)minimum(z->getRight());
+        yOriginalColor = y->getColor();
+        x = y->getRight();
+        if(y->getParent() == z){
+            x->setParent(y);
+        }else{
+            rbTransplant(y,y->getRight());
+            y->setRight(z->getRight());
+            y->getRight()->setParent(y);
+        }
+        rbTransplant(z,y);
+        y->setLeft(z->getLeft());
+        y->getLeft()->setParent(y);
+        y->setColor(z->getColor());
+    }
+    if(yOriginalColor == RBNODE_COLOR::Black){
+        rbDeleteFixup(x);
+    }
+    delete z;
 
 
     // from second edition
-    RBNode* x = nullptr;
-    RBNode* y = nullptr;
-    if(z->getLeft() == nil || z->getRight() == nil){
-        y = z;
-    } else{
-        y = treeSuccessor(z);
-    }
-
-    x = y->getLeft() != nil ? y->getLeft() : y->getRight();
-
-    x->setParent(y->getParent());
-    if(y->getParent() == nil){
-        root = x;
-    } else{
-        if(y == y->getParent()->getLeft()){
-            y->getParent()->setLeft(x);
-        }else{
-            y->getParent()->setRight(x);
-        }
-    }
-    if(y != z){
-        z->setValue(y->getValue());
-    }
-    if(y->getColor() == RBNODE_COLOR::Black){
-        rbDeleteFixup(x);
-    }
+//    RBNode* x = nullptr;
+//    RBNode* y = nullptr;
+//    if(z->getLeft() == nil || z->getRight() == nil){
+//        y = z;
+//    } else{
+//        y = treeSuccessor(z);
+//    }
+//
+//    x = y->getLeft() != nil ? y->getLeft() : y->getRight();
+//
+//    x->setParent(y->getParent());
+//    if(y->getParent() == nil){
+//        root = x;
+//    } else{
+//        if(y == y->getParent()->getLeft()){
+//            y->getParent()->setLeft(x);
+//        }else{
+//            y->getParent()->setRight(x);
+//        }
+//    }
+//    if(y != z){
+//        z->setValue(y->getValue());
+//    }
+//    if(y->getColor() == RBNODE_COLOR::Black){
+//        rbDeleteFixup(x);
+//    }
 }
 
 RBNode *RBTree::treeSuccessor(RBNode *z) {

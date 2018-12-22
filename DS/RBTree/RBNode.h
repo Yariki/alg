@@ -16,6 +16,7 @@ public:
     RBNode(){}
     RBNode(int value){
         this->value = value;
+        this->n = 1;
     }
     virtual ~RBNode(){
         left = right = parent = nullptr;
@@ -61,6 +62,14 @@ public:
         this->right = right;
     }
 
+    int getN() const {
+        return n;
+    }
+
+    void setN(int value){
+        n = value;
+    }
+
 
 private:
     int value;
@@ -68,6 +77,7 @@ private:
     RBNode* parent;
     RBNode* left;
     RBNode* right;
+    int n;
 };
 
 
