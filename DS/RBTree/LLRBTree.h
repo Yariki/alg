@@ -42,6 +42,8 @@ private:
     int size(const RBNode* node);
     RBNode* deleteMax(RBNode* h);
     RBNode* deleteMin(RBNode* h);
+    RBNode* deleteInternal(RBNode* localRoot, int value);
+    bool isEmpty();
 
 private:
     RBNode* root;

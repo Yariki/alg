@@ -2,6 +2,7 @@
 // Created by Yariki on 12/22/2018.
 //
 
+#include <stdint.h>
 #include "LLRBTree.h"
 
 
@@ -196,5 +197,42 @@ RBNode *LLRBTree::deleteMin(RBNode *h) {
 }
 
 void LLRBTree::deleteNode(int value) {
+     if(isRed(root->getLeft()) && !isRed(root->getRight())){
+         root->setColor(Red);
+     }
+     root = deleteInternal(root, value);
+     if(!isEmpty()){
+         root->setColor(Black);
+     }
+}
 
+RBNode *LLRBTree::deleteInternal(RBNode *localRoot, int value) {
+    auto  x = localRoot;
+    if(value < localRoot->getValue()){
+        if(!isRed(x->getLeft()) && !isRed(x->getLeft()->getLeft())){
+            x = moveRedLeft(x);
+        }
+        x->setLeft(deleteInternal(x->getLeft(),value));
+    }else {
+        if(isRed(x->getLeft()))
+            x = righRotate(x);
+        if(value == x->getValue() && x->getRight() == nullptr){
+            return nullptr;
+        }
+        if(!isRed(x->getRight()) && !isRed(x->getRight()->getLeft())){
+            x = moveRedRight(x);
+        }
+        if(value == x->getValue()){
+            auto min = minimum(x->getRight());
+            x->setValue(min->getValue());
+            x->setRight(deleteMin(x->getRight()));
+        }else {
+            x->setRight(deleteInternal(x->getRight(),value));
+        }
+    }
+    return fixUp(x);
+}
+
+bool LLRBTree::isEmpty() {
+    return root == nullptr|| (root->getLeft() == nullptr && root->getRight() == nullptr);
 }
