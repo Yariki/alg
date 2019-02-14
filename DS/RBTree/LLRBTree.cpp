@@ -7,7 +7,8 @@
 
 
 LLRBTree::LLRBTree() {
-
+    root = nullptr;
+    nil = nullptr;
 }
 
 void LLRBTree::insert(int value) {
@@ -79,7 +80,7 @@ const RBNode *LLRBTree::search(RBNode* localRoot,int value) {
 }
 
 RBNode *LLRBTree::createNewNode(int value) {
-    auto node =new RBNode(value);
+    auto node = new RBNode(value);
     node->setColor(Red);
     return node;
 }

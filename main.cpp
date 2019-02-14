@@ -9,6 +9,7 @@
 #include "Sorting/ShellSort.h"
 #include "Sorting/Quick3WaySort.h"
 #include "DS/PriorityQueue/PriorityQueue.h"
+#include "DS/RBTree/LLRBTree.h"
 
 using namespace std;
 
@@ -42,35 +43,32 @@ int main() {
 //    delete pq;
 
     // binary search tree
-    RBTree* tree = new RBTree();
-    int arr[6] = {1,2,3,4,5,6};
-    int length = sizeof(arr)/sizeof(arr[0]);
-    for (int i = 0; i < length; i++) {
-        tree->insert(arr[i]);
-    }
-    //tree->display();
-    auto min = tree->minimum(tree->getRoot());
-    auto max = tree->maximum(tree->getRoot());
-    printf("Min: %d\n",min->getValue());
-    printf("Max: %d\n",max->getValue());
-    auto result = tree->search(tree->getRoot(),9);
-    if(result){
-        printf("Found result: %d\n", result->getValue());
-    }else{
-        printf("The value %d wasn't found.\n", 9);
-    }
-
-    auto node = tree->search(tree->getRoot(),4);
-    tree->deleteNode((RBNode*)node);
-
-    result = tree->search(tree->getRoot(),4);
-    if(result){
-        printf("Found result: %d\n", result->getValue());
-    }else{
-        printf("The value %d wasn't found.\n", 6);
-    }
-
-    delete tree;
+//    LLRBTree* tree = new LLRBTree();
+//    int arr[7] = {10,2,3,25,6,17,30};
+//    int length = sizeof(arr)/sizeof(arr[0]);
+//    for (int i = 0; i < length; i++) {
+//        tree->insert(arr[i]);
+//    }
+//    //tree->display();
+//    auto min = tree->minimum(tree->getRoot());
+//    auto max = tree->maximum(tree->getRoot());
+//    printf("Min: %d\n",min->getValue());
+//    printf("Max: %d\n",max->getValue());
+//    auto result = tree->search(tree->getRoot(),9);
+//    if(result){
+//        printf("Found result: %d\n", result->getValue());
+//    }else{
+//        printf("The value %d wasn't found.\n", 9);
+//    }
+//
+//    result = tree->search(tree->getRoot(),4);
+//    if(result){
+//        printf("Found result: %d\n", result->getValue());
+//    }else{
+//        printf("The value %d wasn't found.\n", 6);
+//    }
+//
+//    delete tree;
     // binary search tree
 
 //    auto selectionSort = new SelectionSort();
