@@ -2,6 +2,8 @@
 // Created by Yariki on 2/15/2019.
 //
 
+#include <cstdio>
+#include <iostream>
 #include "SeparateChainingHashSet.h"
 
 
@@ -24,15 +26,35 @@ SeparateChainingHashSet::~SeparateChainingHashSet() {
 }
 
 void SeparateChainingHashSet::put(char ch, int value) {
-    _st->at(hash(ch))->put(ch,value);
+    auto index = hash(ch);
+    _st->at(index)->put(ch,value);
 }
 
 int SeparateChainingHashSet::get(char ch) {
-    return _st->at(hash(ch))->get(ch);
+    auto index = hash(ch);
+    return _st->at(index)->get(ch);
 }
 
 int SeparateChainingHashSet::hash(char ch) {
     return ((int)ch &0x7fffffff) % _m;
 }
 
+void SeparateChainingHashSet::print() {
+    if(_st->size() == 0){
+        return;
+    }
+
+    for (int i = 0; i < _st->size(); ++i) {
+        auto set = _st->at(i);
+        printf_s("Index: %d",i);
+        auto next = set->getNode();
+        while(next != nullptr){
+
+            std::cout << "{ Key:" << next->get_key() << ";";
+            std::cout << "Value: " << next->get_value() << ";} ";
+            next = next->get_next();
+        }
+        std::cout << std::endl;
+    }
+}
 

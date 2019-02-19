@@ -18,6 +18,7 @@ public:
     SeparateChainingHashSet(int _m);
     void put(char ch, int value);
     int get(char ch);
+    void print();
 
 private:
     int hash(char ch);

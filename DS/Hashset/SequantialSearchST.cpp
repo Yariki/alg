@@ -14,14 +14,14 @@ SequantialSearchST::~SequantialSearchST() {
 
 void SequantialSearchST::put(char ch, int value) {
     if(_start == nullptr){
-        _start = new Node(ch,value, nullptr);
+        _start = new SNode(ch,value, nullptr);
         return;
     }
     auto cur = _start;
     while(cur->get_next() != nullptr){
         cur = cur->get_next();
     }
-    cur->set_next(new Node(ch,value, nullptr));
+    cur->set_next(new SNode(ch,value, nullptr));
 }
 
 int SequantialSearchST::get(char value) {
@@ -32,26 +32,30 @@ int SequantialSearchST::get(char value) {
     return cur->get_value();
 }
 
-char Node::get_key() const {
+char SNode::get_key() {
     return _key;
 }
 
-int Node::get_value() const {
+int SNode::get_value() {
     return _value;
 }
 
-Node::Node(char _key, int _value, Node *_next) : _key(_key), _value(_value), _next(_next) {}
+SNode::SNode(char _key, int _value, SNode *_next) : _key(_key), _value(_value), _next(_next) {}
 
-Node::~Node() {
+SNode::~SNode() {
     delete _next;
     _next = nullptr;
 }
 
-Node *Node::get_next() const {
+SNode *SNode::get_next() const {
     return _next;
 }
 
-void Node::set_next(Node *_next) {
-    Node::_next = _next;
+void SNode::set_next(SNode *_next) {
+    SNode::_next = _next;
+}
+
+SNode *SequantialSearchST::getNode() const {
+    return _start;
 }
 

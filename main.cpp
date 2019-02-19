@@ -10,6 +10,7 @@
 #include "Sorting/Quick3WaySort.h"
 #include "DS/PriorityQueue/PriorityQueue.h"
 #include "DS/RBTree/LLRBTree.h"
+#include "DS/Hashset/SeparateChainingHashSet.h"
 
 using namespace std;
 
@@ -77,5 +78,15 @@ int main() {
 //
 //    delete selectionSort;
 
+    std::string sample = "sampleexample";
+    SeparateChainingHashSet *hashSet = new SeparateChainingHashSet(sample.length());
+
+    for (int i = 0; i < sample.length(); ++i) {
+        char ch = sample[i];
+        hashSet->put(ch,i);
+    }
+    hashSet->print();
+    delete hashSet;
+    hashSet = nullptr;
 
 }

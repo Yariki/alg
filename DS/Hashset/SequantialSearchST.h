@@ -5,23 +5,23 @@
 #ifndef ALGORITHMS_SEQUANTIALSEARCHST_H
 #define ALGORITHMS_SEQUANTIALSEARCHST_H
 
-class Node{
+class SNode{
 public:
-    Node(char _key, int _value, Node *_next);
+    SNode(char _key, int _value, SNode *_next);
 
-    virtual ~Node();
+    virtual ~SNode();
 
-    char get_key() const;
-    int get_value() const;
+    char get_key();
+    int get_value();
 
-    Node *get_next() const;
+    SNode *get_next() const;
 
-    void set_next(Node *_next);
+    void set_next(SNode *_next);
 
 private:
     char _key;
     int _value;
-    Node* _next;
+    SNode* _next;
 
 };
 
@@ -31,9 +31,10 @@ public:
     virtual ~SequantialSearchST();
     void put(char ch, int value);
     int get(char value);
+    SNode *getNode() const;
 
 private:
-    Node* _start;
+    SNode* _start;
 
 };
 
