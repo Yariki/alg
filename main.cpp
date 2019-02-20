@@ -79,14 +79,17 @@ int main() {
 //    delete selectionSort;
 
     std::string sample = "sampleexample";
-    SeparateChainingHashSet *hashSet = new SeparateChainingHashSet(sample.length());
 
-    for (int i = 0; i < sample.length(); ++i) {
-        char ch = sample[i];
-        hashSet->put(ch,i);
-    }
-    hashSet->print();
-    delete hashSet;
-    hashSet = nullptr;
+//    SeparateChainingHashSet *hashSet = new SeparateChainingHashSet(sample.length());
+//
+//    for (int i = 0; i < sample.length(); ++i) {
+//        char ch = sample[i];
+//        hashSet->put(ch,i);
+//    }
+//    hashSet->print();
+//    delete hashSet;
+//    hashSet = nullptr;
+
+
 
 }
