@@ -11,6 +11,7 @@
 #include "DS/PriorityQueue/PriorityQueue.h"
 #include "DS/RBTree/LLRBTree.h"
 #include "DS/Hashset/SeparateChainingHashSet.h"
+#include "DS/Graph/Undirect/UndirectGraph.h"
 
 using namespace std;
 
@@ -91,5 +92,9 @@ int main() {
 //    hashSet = nullptr;
 
 
+    auto graph = new UndirectGraph();
+    graph->init("tinyG.txt");
+
+    delete graph;
 
 }
