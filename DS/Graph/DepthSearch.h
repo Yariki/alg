@@ -17,6 +17,9 @@ public:
     void dfs(Graph* g, int v);
 
 private:
+    void init(Graph* graph);
+
+private:
     map<int,bool> *_marked;
     map<int,int> *_edgeTo;
 

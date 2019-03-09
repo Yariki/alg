@@ -12,6 +12,8 @@
 #include "DS/RBTree/LLRBTree.h"
 #include "DS/Hashset/SeparateChainingHashSet.h"
 #include "DS/Graph/Undirect/UndirectGraph.h"
+#include "DS/Graph/BreadthSearch.h"
+#include "DS/Graph/DepthSearch.h"
 
 using namespace std;
 
@@ -79,7 +81,7 @@ int main() {
 //
 //    delete selectionSort;
 
-    std::string sample = "sampleexample";
+//    std::string sample = "sampleexample";
 
 //    SeparateChainingHashSet *hashSet = new SeparateChainingHashSet(sample.length());
 //
@@ -91,10 +93,17 @@ int main() {
 //    delete hashSet;
 //    hashSet = nullptr;
 
+    // undirect graph
+    auto graph1 = new UndirectGraph();
+    graph1->init("tinyG2.txt");
+    auto breadthSearch = new BreadthSearch(graph1,0);
 
-    auto graph = new UndirectGraph();
-    graph->init("tinyG.txt");
+    auto graph2 = new UndirectGraph();
+    graph2->init("tinyG.txt");
+    auto depth = new DepthSearch(graph2);
 
-    delete graph;
+    delete graph1;
+    delete breadthSearch;
+    delete depth;
 
 }
