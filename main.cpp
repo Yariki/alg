@@ -14,6 +14,7 @@
 #include "DS/Graph/Undirect/UndirectGraph.h"
 #include "DS/Graph/BreadthSearch.h"
 #include "DS/Graph/DepthSearch.h"
+#include "DS/Graph/ConnectedComponent.h"
 
 using namespace std;
 
@@ -101,9 +102,14 @@ int main() {
     auto graph2 = new UndirectGraph();
     graph2->init("tinyG.txt");
     auto depth = new DepthSearch(graph2);
+    auto cc = new ConnectedComponent(graph2);
 
-    delete graph1;
+
     delete breadthSearch;
     delete depth;
+    delete cc;
+    delete graph1;
+    delete graph2;
+
 
 }
