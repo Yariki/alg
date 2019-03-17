@@ -15,6 +15,7 @@
 #include "DS/Graph/BreadthSearch.h"
 #include "DS/Graph/DepthSearch.h"
 #include "DS/Graph/ConnectedComponent.h"
+#include "DS/Graph/Direct/Digraph.h"
 
 using namespace std;
 
@@ -95,12 +96,22 @@ int main() {
 //    hashSet = nullptr;
 
     // undirect graph
-    auto graph1 = new UndirectGraph();
-    graph1->init("tinyG2.txt");
+//    auto graph1 = new UndirectGraph();
+//    graph1->init("tinyG2.txt");
+//    auto breadthSearch = new BreadthSearch(graph1,0);
+
+//    auto graph2 = new UndirectGraph();
+//    graph2->init("tinyG.txt");
+//    auto depth = new DepthSearch(graph2);
+//    auto cc = new ConnectedComponent(graph2);
+
+    // direct graph
+    auto graph1 = new Digraph();
+    graph1->init("tinyDG2.txt");
     auto breadthSearch = new BreadthSearch(graph1,0);
 
-    auto graph2 = new UndirectGraph();
-    graph2->init("tinyG.txt");
+    auto graph2 = new Digraph();
+    graph2->init("tinyDG.txt");
     auto depth = new DepthSearch(graph2);
     auto cc = new ConnectedComponent(graph2);
 
