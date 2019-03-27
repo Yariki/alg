@@ -13,7 +13,6 @@ ConnectedComponent::ConnectedComponent(Graph *g) {
             _count++;
         }
     }
-
 }
 
 ConnectedComponent::~ConnectedComponent() {

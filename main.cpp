@@ -16,6 +16,7 @@
 #include "DS/Graph/DepthSearch.h"
 #include "DS/Graph/ConnectedComponent.h"
 #include "DS/Graph/Direct/Digraph.h"
+#include "DS/Graph/TopologicalSort.h"
 
 using namespace std;
 
@@ -115,12 +116,15 @@ int main() {
     auto depth = new DepthSearch(graph2);
     auto cc = new ConnectedComponent(graph2);
 
+    auto graph3 = new Digraph();
+    graph3->init("tinyDG3.txt");
+    auto top = new TopologicalSort(graph3);
 
     delete breadthSearch;
     delete depth;
     delete cc;
+    delete top;
     delete graph1;
     delete graph2;
-
-
+    delete graph3;
 }
