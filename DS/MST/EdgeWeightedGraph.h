@@ -17,6 +17,7 @@ class EdgeWeightedGraph {
 
 public:
     EdgeWeightedGraph(int v);
+    EdgeWeightedGraph(string filename);
     virtual ~EdgeWeightedGraph();
 
 public:
@@ -24,7 +25,13 @@ public:
     vector<Edge*>* edges(int v);
 
 private:
+    void initGraph(int v);
+    void init(string filename);
+    vector<string> split(const string& input);
+
+private:
      int V;
+     int E;
      map<int, vector<Edge*>*>* adj;
 };
 
