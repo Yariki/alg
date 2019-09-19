@@ -22,10 +22,10 @@ void MergeSort::Merge_Sort(int* arr, int start, int end){
 }
 
 void MergeSort::Merge(int* arr, int start, int middle, int end){
-    const int n1 = middle - start + 1;
-    const int n2 = end - middle;
-    int left[n1] = {};
-    int right[n2] = {};
+    int n1 = middle - start + 1;
+    int n2 = end - middle;
+    int* left = new int[n1];
+    int* right = new int[n2];
     for (int i = 0; i < n1; ++i) {
         left[i] = arr[start + i ];
     }
@@ -53,6 +53,9 @@ void MergeSort::Merge(int* arr, int start, int middle, int end){
         arr[k] = right[j];
         j++;k++;
     }
+
+    delete left;
+    delete right;
 }
 
 

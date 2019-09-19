@@ -21,9 +21,9 @@
 using namespace std;
 
 int main() {
-    //int arr[10] = {4,1,3,2,16,9,10,14,8,7};
+    int arr[10] = {4,1,3,2,16,9,10,14,8,7};
 //    int arr[5] = {1,3,1,-1,3};
-    //int length = sizeof(arr)/sizeof(arr[0]);
+    int length = sizeof(arr)/sizeof(arr[0]);
 //    printf("Before Sort\n");
 //    for (int i = 0; i < length; ++i) {
 //        printf("%d ",arr[i]);
@@ -37,17 +37,17 @@ int main() {
 //    delete sort;
 
 
-//    auto pq = new PriorityQueue(10);
-//    for (int j = 0; j < length; ++j) {
-//        pq->insert(arr[j]);
-//    }
-//
-//    while(!pq->isEmpty()){
-//        auto max = pq->getMax();
-//        printf("%d ",max);
-//    }
-//
-//    delete pq;
+    auto pq = new PriorityQueue(10,true);
+    for (int j = 0; j < length; ++j) {
+        pq->insert(arr[j]);
+    }
+
+    while(!pq->isEmpty()){
+        auto max = pq->getTop();
+        printf("%d ",max);
+    }
+
+    delete pq;
 
     // binary search tree
 //    LLRBTree* tree = new LLRBTree();
@@ -107,24 +107,24 @@ int main() {
 //    auto cc = new ConnectedComponent(graph2);
 
     // direct graph
-    auto graph1 = new Digraph();
-    graph1->init("tinyDG2.txt");
-    auto breadthSearch = new BreadthSearch(graph1,0);
-
-    auto graph2 = new Digraph();
-    graph2->init("tinyDG.txt");
-    auto depth = new DepthSearch(graph2);
-    auto cc = new ConnectedComponent(graph2);
-
-    auto graph3 = new Digraph();
-    graph3->init("tinyDG3.txt");
-    auto top = new TopologicalSort(graph3);
-
-    delete breadthSearch;
-    delete depth;
-    delete cc;
-    delete top;
-    delete graph1;
-    delete graph2;
-    delete graph3;
+//    auto graph1 = new Digraph();
+//    graph1->init("tinyDG2.txt");
+//    auto breadthSearch = new BreadthSearch(graph1,0);
+//
+//    auto graph2 = new Digraph();
+//    graph2->init("tinyDG.txt");
+//    auto depth = new DepthSearch(graph2);
+//    auto cc = new ConnectedComponent(graph2);
+//
+//    auto graph3 = new Digraph();
+//    graph3->init("tinyDG3.txt");
+//    auto top = new TopologicalSort(graph3);
+//
+//    delete breadthSearch;
+//    delete depth;
+//    delete cc;
+//    delete top;
+//    delete graph1;
+//    delete graph2;
+//    delete graph3;
 }
