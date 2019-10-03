@@ -14,7 +14,9 @@ public:
 public:
     int either();
     int other(int vertex);
-    int compareTo(Edge* that);
+    bool compareTo(Edge* that);
+
+    double getWeight() const;
 
 private:
     int v,w;

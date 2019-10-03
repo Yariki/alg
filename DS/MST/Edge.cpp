@@ -19,14 +19,12 @@ int Edge::other(int vertex) {
     return vertex == v ? w : v;
 }
 
-int Edge::compareTo(Edge *that) {
-    if(this->weight < that->weight){
-        return -1;
-    } else if(this->weight > that->weight){
-        return 1;
-    } else {
-        return 0;
-    }
+bool Edge::compareTo(Edge *that) {
+    return this->getWeight() > that->getWeight();
+}
+
+double Edge::getWeight() const {
+    return weight;
 }
 
 

@@ -17,6 +17,8 @@
 #include "DS/Graph/ConnectedComponent.h"
 #include "DS/Graph/Direct/Digraph.h"
 #include "DS/Graph/TopologicalSort.h"
+#include "DS/MST/EdgeWeightedGraph.h"
+#include "DS/MST/KruskalMST.h"
 
 using namespace std;
 
@@ -37,7 +39,7 @@ int main() {
 //    delete sort;
 
 
-    auto pq = new PriorityQueue(10,true);
+    /*auto pq = new PriorityQueue(10,true);
     for (int j = 0; j < length; ++j) {
         pq->insert(arr[j]);
     }
@@ -47,7 +49,7 @@ int main() {
         printf("%d ",max);
     }
 
-    delete pq;
+    delete pq;*/
 
     // binary search tree
 //    LLRBTree* tree = new LLRBTree();
@@ -127,4 +129,9 @@ int main() {
 //    delete graph1;
 //    delete graph2;
 //    delete graph3;
+
+    auto ewGraph = new EdgeWeightedGraph("tinyEWG.txt");
+    auto kruskal = new KruskalMST(ewGraph);
+
+    auto result = kruskal->edges();
 }

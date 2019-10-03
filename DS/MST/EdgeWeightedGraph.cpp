@@ -35,6 +35,19 @@ vector<Edge*> *EdgeWeightedGraph::edges(int v) {
     return adj->at(v);
 }
 
+vector<Edge *> *EdgeWeightedGraph::edges() {
+    auto e = new vector<Edge*>();
+    for(auto i = 0; i < V; i++){
+        auto edg = adj->at(i);
+        for(auto j = 0; j < edg->size();j++){
+            if(edg->at(j)->other(i) > i){
+                e->push_back(edg->at(j));
+            }
+        }
+    }
+    return e;
+}
+
 void EdgeWeightedGraph::init(string filename) {
     string temp;
     ifstream file(filename);
@@ -76,4 +89,12 @@ vector<string> EdgeWeightedGraph::split(const string &input) {
     }
 
     return tokens;
+}
+
+int EdgeWeightedGraph::getV() const {
+    return V;
+}
+
+int EdgeWeightedGraph::getE() const {
+    return E;
 }

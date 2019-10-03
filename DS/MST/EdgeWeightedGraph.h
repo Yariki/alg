@@ -22,7 +22,12 @@ public:
 
 public:
     void  addEdge(Edge* e);
+    vector<Edge*>* edges();
     vector<Edge*>* edges(int v);
+
+    int getV() const;
+
+    int getE() const;
 
 private:
     void initGraph(int v);
