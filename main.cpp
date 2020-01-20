@@ -19,6 +19,7 @@
 #include "DS/Graph/TopologicalSort.h"
 #include "DS/MST/EdgeWeightedGraph.h"
 #include "DS/MST/KruskalMST.h"
+#include "DS/PriorityQueue/Pq.h"
 
 using namespace std;
 
@@ -130,8 +131,38 @@ int main() {
 //    delete graph2;
 //    delete graph3;
 
-    auto ewGraph = new EdgeWeightedGraph("tinyEWG.txt");
-    auto kruskal = new KruskalMST(ewGraph);
+//    auto ewGraph = new EdgeWeightedGraph("tinyEWG.txt");
+//    auto kruskal = new KruskalMST(ewGraph);
+//
+//    auto result = kruskal->edges();
 
-    auto result = kruskal->edges();
+    auto pq = new Pq(5,true);
+    pq->insert(new Bucket(2,2));
+    pq->insert(new Bucket(10,10));
+    pq->insert(new Bucket(1,1));
+    pq->insert(new Bucket(100,100));
+    pq->insert(new Bucket(5,5));
+
+    while (!pq->isEmpty()){
+        auto top = pq->getTop();
+        printf("%d\n",top->getKey());
+    }
+    delete pq;
+
+    printf("\n");
+    auto p2 = new PriorityQueue(5,true);
+    p2->insert(2);
+    p2->insert(10);
+    p2->insert(1);
+    p2->insert(100);
+    p2->insert(5);
+
+    while (!p2->isEmpty()){
+        auto top = p2->getTop();
+        printf("%d\n",top);
+    }
+    delete p2;
+
+
+
 }
