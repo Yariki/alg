@@ -4,13 +4,13 @@
 
 #include "Pq.h"
 
-Bucket::Bucket(int key, int value) : _key(key), _value(value) {}
+Bucket::Bucket(double key, int value) : _key(key), _value(value) {}
 
 Bucket::~Bucket() {
 
 }
 
-int Bucket::getKey() const {
+double Bucket::getKey() const {
     return _key;
 }
 

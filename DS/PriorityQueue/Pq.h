@@ -12,20 +12,20 @@ using namespace std;
 class Bucket {
 
 public:
-    Bucket(int key, int value);
+    Bucket(double key, int value);
 
     virtual ~Bucket();
 
-    int getKey() const;
+    double getKey() const;
 
     int getValue() const;
 
 private:
-    int _key;
+    double _key;
     int _value;
 };
 
-
+// TODO: refactore queue in case to make it to support different types with custom comparators.
 
 class Pq {
 
