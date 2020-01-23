@@ -8,7 +8,7 @@
 #include <sstream>
 
 EdgeWeightedDigraph::EdgeWeightedDigraph(string filename) {
-
+    init(filename);
 }
 
 EdgeWeightedDigraph::~EdgeWeightedDigraph() {

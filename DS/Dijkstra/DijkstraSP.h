@@ -19,7 +19,7 @@ public:
     virtual ~DijkstraSP();
     double disTo(int v);
     bool hasPathTo(int v);
-    stack<DirectedEdge*> pathTo(int v);
+    stack<DirectedEdge*>* pathTo(int v);
 
 private:
     void relax(EdgeWeightedDigraph* graph,int v);

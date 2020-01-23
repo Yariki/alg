@@ -48,13 +48,13 @@ bool DijkstraSP::hasPathTo(int v) {
     return distTo[v] < numeric_limits<double >::max();
 }
 
-stack<DirectedEdge *> DijkstraSP::pathTo(int v) {
+stack<DirectedEdge *>* DijkstraSP::pathTo(int v) {
     if(!hasPathTo(v))
-        return stack<DirectedEdge *>();
-    stack<DirectedEdge*> path;
+        return nullptr;
+    auto path = new stack<DirectedEdge*>();
 
     for (DirectedEdge* e = edgeTo[v]; e != nullptr; e = edgeTo[e->getFrom()]) {
-        path.push(e);
+        path->push(e);
     }
     return path;
 }

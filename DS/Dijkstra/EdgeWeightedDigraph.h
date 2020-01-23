@@ -26,7 +26,7 @@ public:
     }
 
     void addEdge(DirectedEdge* edge){
-        adj->at(edge->getFrom());
+        adj->at(edge->getFrom())->push_back(edge);
     }
 private:
     void init(string filename);
