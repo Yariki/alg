@@ -30,6 +30,9 @@ private:
 public:
     AcyclicSP(string filename, int s);
     ~AcyclicSP();
+    double disTo(int v);
+    bool hasPathTo(int v);
+    stack<DirectedEdge*>* pathTo(int v);
 };
 
    

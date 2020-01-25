@@ -20,8 +20,9 @@
 #include "DS/MST/EdgeWeightedGraph.h"
 #include "DS/MST/KruskalMST.h"
 #include "DS/PriorityQueue/Pq.h"
-#include "DS/Dijkstra/EdgeWeightedDigraph.h"
-#include "DS/Dijkstra/DijkstraSP.h"
+#include "DS/ShortPath/EdgeWeightedDigraph.h"
+#include "DS/ShortPath/DijkstraSP.h"
+#include "DS/ShortPath/AcyclicSP.h"
 
 using namespace std;
 
@@ -164,12 +165,25 @@ int main() {
 //        printf("%d\n",top);
 //    }
 //    delete p2;
+// ===========Dijkstra======================================================
+//    auto graph = new EdgeWeightedDigraph("tinyEWD.txt");
+//    auto dj = new DijkstraSP(graph,0);
+//
+//    printf("Has path to %d = %s\n",1,dj->hasPathTo(1)? "true" : "false");
+//    stack<DirectedEdge*>* path = dj->pathTo(1);
+//    while (!path->empty()){
+//        auto edge = path->top();
+//        path->pop();
+//        printf("from %d to %d\n",edge->getFrom(), edge->getTo());
+//    }
+//    delete path;
+// ===========================================================================
 
-    auto graph = new EdgeWeightedDigraph("tinyEWD.txt");
-    auto dj = new DijkstraSP(graph,0);
+// ===========Acyclic SP======================================================
 
-    printf("Has path to %d = %s\n",1,dj->hasPathTo(1)? "true" : "false");
-    stack<DirectedEdge*>* path = dj->pathTo(1);
+    auto acyclic = new AcyclicSP("tinyACL.txt",0);
+    stack<DirectedEdge*>* path = acyclic->pathTo(5);
+
     while (!path->empty()){
         auto edge = path->top();
         path->pop();
@@ -177,4 +191,5 @@ int main() {
     }
     delete path;
 
+// ===========================================================================
 }
