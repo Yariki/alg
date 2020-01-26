@@ -6,6 +6,7 @@
     "cmake.sourceDirectory": "${workspaceFolder}",
     "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
     "files.associations": {
-        "map": "cpp"
+        "map": "cpp",
+        "limits": "cpp"
     }
 }

@@ -23,6 +23,7 @@
 #include "DS/ShortPath/EdgeWeightedDigraph.h"
 #include "DS/ShortPath/DijkstraSP.h"
 #include "DS/ShortPath/AcyclicSP.h"
+#include "DS/ShortPath/BellmanFordSP.h"
 
 using namespace std;
 
@@ -181,8 +182,24 @@ int main() {
 
 // ===========Acyclic SP======================================================
 
-    auto acyclic = new AcyclicSP("tinyACL.txt",0);
-    stack<DirectedEdge*>* path = acyclic->pathTo(5);
+//    auto acyclic = new AcyclicSP("tinyACL.txt",0);
+//    stack<DirectedEdge*>* path = acyclic->pathTo(5);
+//
+//    while (!path->empty()){
+//        auto edge = path->top();
+//        path->pop();
+//        printf("from %d to %d\n",edge->getFrom(), edge->getTo());
+//    }
+//    delete path;
+
+// ===========================================================================
+
+// ===========Bellman Ford SP======================================================
+
+    auto graph = new EdgeWeightedDigraph("tinyBF.txt");
+    auto bf = new BellmanFordSP(graph,0);
+
+    stack<DirectedEdge*>* path = bf->pathTo(5);
 
     while (!path->empty()){
         auto edge = path->top();
@@ -190,6 +207,11 @@ int main() {
         printf("from %d to %d\n",edge->getFrom(), edge->getTo());
     }
     delete path;
+    delete bf;
+    delete graph;
 
 // ===========================================================================
+
+
+
 }
