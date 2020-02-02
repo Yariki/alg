@@ -24,6 +24,8 @@
 #include "DS/ShortPath/DijkstraSP.h"
 #include "DS/ShortPath/AcyclicSP.h"
 #include "DS/ShortPath/BellmanFordSP.h"
+#include "DS/MaxFlow/FlowNetwork.h"
+#include "DS/MaxFlow/FordFulkerson.h"
 
 using namespace std;
 
@@ -196,22 +198,30 @@ int main() {
 
 // ===========Bellman Ford SP======================================================
 
-    auto graph = new EdgeWeightedDigraph("tinyBF.txt");
-    auto bf = new BellmanFordSP(graph,0);
-
-    stack<DirectedEdge*>* path = bf->pathTo(5);
-
-    while (!path->empty()){
-        auto edge = path->top();
-        path->pop();
-        printf("from %d to %d\n",edge->getFrom(), edge->getTo());
-    }
-    delete path;
-    delete bf;
-    delete graph;
+//    auto graph = new EdgeWeightedDigraph("tinyBF.txt");
+//    auto bf = new BellmanFordSP(graph,0);
+//
+//    stack<DirectedEdge*>* path = bf->pathTo(5);
+//
+//    while (!path->empty()){
+//        auto edge = path->top();
+//        path->pop();
+//        printf("from %d to %d\n",edge->getFrom(), edge->getTo());
+//    }
+//    delete path;
+//    delete bf;
+//    delete graph;
 
 // ===========================================================================
 
+// =================Ford Flkerson================================
+
+    auto graph = new FlowNetwork("tinyFN.txt");
+    auto alg = new FordFulkerson(graph,0,5);
+    printf("Value %f", alg->getValue());
+
+
+// ===========================================================================
 
 
 }
