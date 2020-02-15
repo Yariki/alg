@@ -7,7 +7,7 @@
 #include <sstream>
 #include "FlowNetwork.h"
 
-FlowNetwork::FlowNetwork(string filename) {
+FlowNetwork::FlowNetwork(std::string filename) {
     init(filename);
 }
 
@@ -15,24 +15,24 @@ FlowNetwork::~FlowNetwork() {
 
 }
 
-void FlowNetwork::init(string filename) {
-    string temp;
-    ifstream file(filename);
+void FlowNetwork::init(std::string filename) {
+    std::string temp;
+    std::ifstream file(filename);
     if(file.good() && file.is_open()){
-        getline(file,temp);
-        v = stoi(temp);
-        getline(file,temp);
-        e = stoi(temp);
+        std::getline(file,temp);
+        v = std::stoi(temp);
+        std::getline(file,temp);
+        e = std::stoi(temp);
         initGraph(v);
 
         for (int i = 0; i < e; ++i) {
-            getline(file, temp);
+            std::getline(file, temp);
             auto tokens = split(temp);
 
             if(tokens.size() > 1){
-                auto source = stoi(tokens.at(0));
-                auto to = stoi(tokens.at(1));
-                auto weight = stod(tokens.at(2));
+                auto source = std::stoi(tokens.at(0));
+                auto to = std::stoi(tokens.at(1));
+                auto weight = std::stod(tokens.at(2));
                 addEdge(new FlowEdge(source,to,weight));
             }
         }
@@ -40,17 +40,17 @@ void FlowNetwork::init(string filename) {
 }
 
 void FlowNetwork::initGraph(int v) {
-    adj = new map<int,vector<FlowEdge*>*>();
+    adj = new std::map<int, std::vector<FlowEdge*>*>();
     for (int i = 0; i < v; ++i) {
-        adj->insert(pair<int,vector<FlowEdge*>*>(i,new vector<FlowEdge*>));
+        adj->insert(std::pair<int, std::vector<FlowEdge*>*>(i,new std::vector<FlowEdge*>));
     }
 }
 
-vector<string> FlowNetwork::split(const string &input) {
-    string token;
-    vector<string> tokens;
+std::vector<std::string> FlowNetwork::split(const std::string &input) {
+    std::string token;
+    std::vector<std::string> tokens;
     char delim = ' ';
-    istringstream tokenStrem(input);
+    std::istringstream tokenStrem(input);
     while (getline(tokenStrem,token,delim)){
         tokens.push_back(token);
     }
@@ -65,11 +65,11 @@ void FlowNetwork::addEdge(FlowEdge *e) {
     adj->at(w)->push_back(e);
 }
 
-vector<FlowEdge *> *FlowNetwork::getAdj(int v) {
+std::vector<FlowEdge *> *FlowNetwork::getAdj(int v) {
     return adj->at(v);
 }
 
-vector<FlowEdge *> *FlowNetwork::edges() {
+std::vector<FlowEdge *> *FlowNetwork::edges() {
     return nullptr;
 }
 

@@ -26,6 +26,8 @@
 #include "DS/ShortPath/BellmanFordSP.h"
 #include "DS/MaxFlow/FlowNetwork.h"
 #include "DS/MaxFlow/FordFulkerson.h"
+#include "Strings/KeySorting.h"
+#include "Strings/LSD.h"
 
 using namespace std;
 
@@ -216,12 +218,45 @@ int main() {
 
 // =================Ford Flkerson================================
 
-    auto graph = new FlowNetwork("tinyFN.txt");
-    auto alg = new FordFulkerson(graph,0,5);
-    printf("Value %f", alg->getValue());
+    // auto graph = new FlowNetwork("tinyFN.txt");
+    // auto alg = new FordFulkerson(graph,0,5);
+    // printf("Value %f", alg->getValue());
 
 
 // ===========================================================================
 
+
+// ============Key-index counting (sorting small integers, string by the first letter etc)===================================
+
+// char charArr[] = {'f','a','t','c','g','k','c','m','b','i'};
+
+// for(int i = 0; i < 10; i++){
+//     cout << charArr[i] << " ";
+// }
+// printf("\n");
+
+// keySorting(charArr, 10);
+
+// for(int i = 0; i < 10; i++){
+//     cout << charArr[i] << " ";
+// }
+// printf("\n");
+
+
+
+// ===========================================================================
+
+// ===========LSD sorting====================================
+
+    auto lsd = new LSD("strings_sort.txt");
+    auto result = lsd->sort();
+
+    for (int i = 0; i < result.size(); ++i) {
+        printf("%s\n",result[i].c_str());
+    }
+
+
+
+// ===========================================================================
 
 }

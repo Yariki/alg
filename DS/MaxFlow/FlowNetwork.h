@@ -5,28 +5,29 @@
 #ifndef ALGORITHMS_FLOWNETWORK_H
 #define ALGORITHMS_FLOWNETWORK_H
 
+#include <string>
 #include <vector>
 #include <map>
 #include "FlowEdge.h"
 
-using namespace std;
+
 
 class FlowNetwork {
 private:
     int v;
     int e;
-    map<int, vector<FlowEdge*>*>* adj;
+    std::map<int, std::vector<FlowEdge*>*>* adj;
 
-    void init(string filename);
+    void init(std::string filename);
     void initGraph(int v);
-    vector<string> split(const string& input);
+    std::vector<std::string> split(const std::string& input);
 
 public:
-    FlowNetwork(string filename);
+    FlowNetwork(std::string filename);
     virtual ~FlowNetwork();
     void addEdge(FlowEdge* e);
-    vector<FlowEdge*>* getAdj(int v);
-    vector<FlowEdge*>* edges();
+    std::vector<FlowEdge*>* getAdj(int v);
+    std::vector<FlowEdge*>* edges();
     int getV() const;
     int getE() const;
 
