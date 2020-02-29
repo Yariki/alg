@@ -28,6 +28,7 @@
 #include "DS/MaxFlow/FordFulkerson.h"
 #include "Strings/KeySorting.h"
 #include "Strings/LSD.h"
+#include "Strings/Quick3WaySorting.h"
 
 using namespace std;
 
@@ -248,8 +249,21 @@ int main() {
 
 // ===========LSD sorting====================================
 
-    auto lsd = new LSD("strings_sort.txt");
-    auto result = lsd->sort();
+//    auto lsd = new LSD("strings_sort.txt");
+//    auto result = lsd->sort();
+//
+//    for (int i = 0; i < result.size(); ++i) {
+//        printf("%s\n",result[i].c_str());
+//    }
+
+
+
+// ===========================================================================
+
+// ===========Quick3Way sorting====================================
+
+    auto qsort =  new Quick3WaySorting("quick3way_small.txt"); //new Quick3WaySorting("quick3way.txt");
+    auto result = qsort->sort();
 
     for (int i = 0; i < result.size(); ++i) {
         printf("%s\n",result[i].c_str());
@@ -258,5 +272,6 @@ int main() {
 
 
 // ===========================================================================
+
 
 }
