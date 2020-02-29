@@ -29,6 +29,7 @@
 #include "Strings/KeySorting.h"
 #include "Strings/LSD.h"
 #include "Strings/Quick3WaySorting.h"
+#include "Strings/MSD.h"
 
 using namespace std;
 
@@ -255,22 +256,26 @@ int main() {
 //    for (int i = 0; i < result.size(); ++i) {
 //        printf("%s\n",result[i].c_str());
 //    }
-
-
-
 // ===========================================================================
 
-// ===========Quick3Way sorting====================================
+// ===========MSD sorting====================================
 
-    auto qsort =  new Quick3WaySorting("quick3way_small.txt"); //new Quick3WaySorting("quick3way.txt");
-    auto result = qsort->sort();
+    auto msd =  new MSD("msd.txt");
+    auto result = msd->sort();
 
     for (int i = 0; i < result.size(); ++i) {
         printf("%s\n",result[i].c_str());
     }
+// ===========================================================================
 
+// ===========Quick3Way sorting====================================
 
+    // auto qsort =  new Quick3WaySorting("quick3way_small.txt"); //new Quick3WaySorting("quick3way.txt");
+    // auto result = qsort->sort();
 
+    // for (int i = 0; i < result.size(); ++i) {
+    //     printf("%s\n",result[i].c_str());
+    // }
 // ===========================================================================
 
 
