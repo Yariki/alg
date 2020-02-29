@@ -30,6 +30,7 @@
 #include "Strings/LSD.h"
 #include "Strings/Quick3WaySorting.h"
 #include "Strings/MSD.h"
+#include "Strings/Tries/RTriesST.h"
 
 using namespace std;
 
@@ -260,12 +261,12 @@ int main() {
 
 // ===========MSD sorting====================================
 
-    auto msd =  new MSD("msd.txt");
-    auto result = msd->sort();
+    // auto msd =  new MSD("msd.txt");
+    // auto result = msd->sort();
 
-    for (int i = 0; i < result.size(); ++i) {
-        printf("%s\n",result[i].c_str());
-    }
+    // for (int i = 0; i < result.size(); ++i) {
+    //     printf("%s\n",result[i].c_str());
+    // }
 // ===========================================================================
 
 // ===========Quick3Way sorting====================================
@@ -277,6 +278,18 @@ int main() {
     //     printf("%s\n",result[i].c_str());
     // }
 // ===========================================================================
+
+
+// ===========R Tries sorting====================================
+
+    auto rtries =  new RTriesST("rtries.txt");
+    auto val = rtries->get("the");
+
+    printf("Key: the; value: %d\n", rtries->get("the")); 
+    printf("Key: shore; value: %d\n", rtries->get("shore")); 
+
+// ===========================================================================
+
 
 
 }
