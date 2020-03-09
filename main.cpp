@@ -31,6 +31,7 @@
 #include "Strings/Quick3WaySorting.h"
 #include "Strings/MSD.h"
 #include "Strings/Tries/RTriesST.h"
+#include "Strings/Tries/TST.h"
 
 using namespace std;
 
@@ -282,11 +283,21 @@ int main() {
 
 // ===========R Tries sorting====================================
 
-    auto rtries =  new RTriesST("rtries.txt");
-    auto val = rtries->get("the");
+//    auto rtries =  new RTriesST("rtries.txt");
+//    auto val = rtries->get("the");
+//
+//    printf("Key: the; value: %d\n", rtries->get("the"));
+//    printf("Key: shore; value: %d\n", rtries->get("shore"));
 
-    printf("Key: the; value: %d\n", rtries->get("the")); 
-    printf("Key: shore; value: %d\n", rtries->get("shore")); 
+// ===========================================================================
+
+// ===========Ternary Tries sorting====================================
+
+    auto tst =  new TST<int>("rtries.txt");
+    auto val = tst->get("the");
+
+    printf("Key: the; value: %d\n", tst->get("the"));
+    printf("Key: shore; value: %d\n", tst->get("shore"));
 
 // ===========================================================================
 
