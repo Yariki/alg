@@ -2,7 +2,7 @@
     "workbench.colorCustomizations": {},
     "cmake.buildDirectory": "${workspaceFolder}/build",
     "cmake.buildBeforeRun": true,
-    "cmake.cmakePath": "C:/Program Files/CMake/bin/cmake.exe",
+    "cmake.cmakePath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\bin\\cmake.exe",
     "cmake.sourceDirectory": "${workspaceFolder}",
     "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
     "files.associations": {
