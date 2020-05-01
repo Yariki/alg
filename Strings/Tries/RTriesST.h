@@ -4,12 +4,13 @@
 #include <string>
 #include <vector>
 #include <map>
+#include "..\..\Shared\shared.h"
 
 using std::vector;
 using std::string;
 using std::map;
 
-const int R = 256;
+
 
 class RTNode;
 

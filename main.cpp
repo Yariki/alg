@@ -32,6 +32,7 @@
 #include "Strings/MSD.h"
 #include "Strings/Tries/RTriesST.h"
 #include "Strings/Tries/TST.h"
+#include "Strings/Search/KMP1.h"
 
 using namespace std;
 
@@ -293,11 +294,21 @@ int main() {
 
 // ===========Ternary Tries sorting====================================
 
-    auto tst =  new TST<int>("rtries.txt");
-    auto val = tst->get("the");
+//    auto tst =  new TST<int>("rtries.txt");
+//    auto val = tst->get("the");
+//
+//    printf("Key: the; value: %d\n", tst->get("the"));
+//    printf("Key: shore; value: %d\n", tst->get("shore"));
 
-    printf("Key: the; value: %d\n", tst->get("the"));
-    printf("Key: shore; value: %d\n", tst->get("shore"));
+// ===========================================================================
+
+
+// ===========Ternary Tries sorting====================================
+
+    auto kmp = new KmpSearch("kmp.txt");
+    auto position = kmp->search();
+
+    printf("Position: %d\n", position);
 
 // ===========================================================================
 

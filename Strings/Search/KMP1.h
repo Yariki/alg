@@ -5,10 +5,11 @@
 #include <string>
 #include <vector>
 #include <map>
+#include "..\..\Shared\shared.h"
 
-using std::string;
-using std::vector;
 using std::map;
+using std::vector;
+using std::string;
 
 class KmpSearch {
 public:
@@ -17,13 +18,11 @@ public:
     int search();
 
 private:
-    void fillDfa();
     void readFile(string filename);
 
 private:
     string text;
     string pattern;
-    int** dfa;
 };
 
 #endif // __KMP1_H__
