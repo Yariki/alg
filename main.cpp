@@ -34,6 +34,7 @@
 #include "Strings/Tries/TST.h"
 #include "Strings/Search/KMP1.h"
 #include "Strings/Search/BoyerMoore.h"
+#include "Strings/Search/RabinKarp.h"
 
 using namespace std;
 
@@ -315,12 +316,20 @@ int main() {
 
 // ===========Boyer-Moore====================================
 
-    auto bm = new BoyerMoore("kmp.txt");
-    auto position = bm->search();
+//    auto bm = new BoyerMoore("kmp.txt");
+//    auto position = bm->search();
+//
+//    printf("Position: %d\n", position);
+
+// ===========================================================================
+
+// ===========Rabin Karp====================================
+
+    auto rb = new RabinKarp("kmp.txt");
+    auto position = rb->search();
 
     printf("Position: %d\n", position);
 
 // ===========================================================================
-
 
 }
