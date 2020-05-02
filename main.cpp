@@ -33,6 +33,7 @@
 #include "Strings/Tries/RTriesST.h"
 #include "Strings/Tries/TST.h"
 #include "Strings/Search/KMP1.h"
+#include "Strings/Search/BoyerMoore.h"
 
 using namespace std;
 
@@ -303,15 +304,23 @@ int main() {
 // ===========================================================================
 
 
-// ===========Ternary Tries sorting====================================
+// ===========KMP search====================================
 
-    auto kmp = new KmpSearch("kmp.txt");
-    auto position = kmp->search();
+//    auto kmp = new KmpSearch("kmp.txt");
+//    auto position = kmp->search();
+//
+//    printf("Position: %d\n", position);
+
+// ===========================================================================
+
+// ===========Boyer-Moore====================================
+
+    auto bm = new BoyerMoore("kmp.txt");
+    auto position = bm->search();
 
     printf("Position: %d\n", position);
 
 // ===========================================================================
-
 
 
 }
