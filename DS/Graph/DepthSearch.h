@@ -13,8 +13,10 @@ class DepthSearch {
 public:
     DepthSearch(Graph* g);
     DepthSearch(Graph* g, int s);
+    DepthSearch(Graph* g, vector<int> &list);
     virtual ~DepthSearch();
     void dfs(Graph* g, int v);
+    bool marked(int v);
 
 private:
     void init(Graph* graph);

@@ -35,6 +35,7 @@
 #include "Strings/Search/KMP1.h"
 #include "Strings/Search/BoyerMoore.h"
 #include "Strings/Search/RabinKarp.h"
+#include "Strings/RE/NFA.h"
 
 using namespace std;
 
@@ -325,10 +326,23 @@ int main() {
 
 // ===========Rabin Karp====================================
 
-    auto rb = new RabinKarp("kmp.txt");
-    auto position = rb->search();
+//    auto rb = new RabinKarp("kmp.txt");
+//    auto position = rb->search();
+//
+//    printf("Position: %d\n", position);
 
-    printf("Position: %d\n", position);
+// ===========================================================================
+
+
+// ===========Sample For Regular Expressions (the implementation treat only couple meta symbols) ====================================
+// ===========The implementation treat only couple meta symbols====================================
+// ===========Each meta symbol require it's own rules for building NFA====================================
+
+    auto nfa = new NFA("((A*B|AC)D)");
+    auto matched = nfa->isMatch("AABD");
+    printf("IsMatched: %d\n", matched);
+
+    delete nfa;
 
 // ===========================================================================
 

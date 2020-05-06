@@ -20,6 +20,15 @@ DepthSearch::DepthSearch(Graph* g, int s) {
     dfs(g,s);
 }
 
+DepthSearch::DepthSearch(Graph *g, vector<int> &list) {
+    init(g);
+    for(auto s : list){
+        if(!_marked->at(s)){
+            dfs(g,s);
+        }
+    }
+}
+
 DepthSearch::~DepthSearch() {
     delete _marked;
     delete _edgeTo;
@@ -33,6 +42,10 @@ void DepthSearch::init(Graph *graph) {
         _marked->insert(pair<int,bool>(i,false));
         _edgeTo->insert(pair<int,int>(i,-1));
     }
+}
+
+bool DepthSearch::marked(int v) {
+    return _marked->at(v);
 }
 
 void DepthSearch::dfs(Graph *g, int v) {

@@ -31,7 +31,7 @@ Graph::~Graph() {
 }
 
 void Graph::init(int v) {
-    this->V = V;
+    this->V = v;
     initGraph(V);
 }
 
